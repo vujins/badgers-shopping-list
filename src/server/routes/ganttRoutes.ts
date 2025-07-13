@@ -1,10 +1,7 @@
-import express, { Request, Response, Router } from 'express';
+import express, { Router } from 'express';
 
 const router: Router = express.Router();
 
-type RouteHandler = (req: Request, res: Response) => void;
-
-// Health check route
 router.get('/health', (req, res) => {
   res.json({
     status: 'OK',
@@ -15,3 +12,5 @@ router.get('/health', (req, res) => {
     'x-ms-client-principal': req.headers['x-ms-client-principal'],
   });
 });
+
+export default router;
