@@ -28,7 +28,6 @@ if (isDevelopment) {
   );
 }
 
-// API Routes (always available)
 app.use('/api', ganttRoutes);
 
 // Only serve static files in production or when not in dev mode
@@ -46,7 +45,7 @@ if (!isDevelopment) {
     res.json({
       message: 'API Server running in development mode',
       port: PORT,
-      endpoints: ['GET /api/feature-areas', 'POST /api/feature-areas', 'GET /api/gantt-data'],
+      endpoints: ['GET /api/'],
     });
   });
 }
