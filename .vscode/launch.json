@@ -21,7 +21,7 @@
         "--runInBand",
         "--no-cache",
         "--no-coverage",
-        "src/tests/components/GanttChart.test.tsx"
+        "src/tests/components/App.test.tsx"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -37,7 +37,7 @@
         "--no-cache",
         "--no-coverage",
         "--testNamePattern=${input:testNamePattern}",
-        "src/tests/components/GanttChart.test.tsx"
+        "src/tests/components/App.test.tsx"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",

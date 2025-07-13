@@ -23,5 +23,7 @@
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "appService.defaultWebAppToDeploy": "/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/web-app-guide/providers/Microsoft.Web/sites/web-app-guide",
+  "appService.deploySubpath": "."
 } 

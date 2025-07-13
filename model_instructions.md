@@ -21,12 +21,8 @@ This application is now deployed as a **unified Azure Web App** where both the f
 
 ## Features
 
-- Interactive Gantt chart with drag-and-drop functionality
-- Feature areas and features management
-- Release tracking with different types (Web, Native, Both)
-- Dependency tracking for releases
+- Guide for how to build a Web App on Azure
 - Microsoft SSO authentication (restricted to @microsoft.com users)
-- Real-time data persistence
 
 ## Data Model
 

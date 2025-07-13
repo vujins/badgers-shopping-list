@@ -35,11 +35,13 @@ export const Header = () => {
               href="https://portal.azure.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center px-4 py-2 bg-blue-300 text-white rounded-md hover:bg-blue-700 transition-colors"
             >
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21.5 4l-8.5 8.5-8.5-8.5L2 6.5 12 16.5 22 6.5z" />
-              </svg>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg"
+                alt="Microsoft Azure Logo"
+                className="w-5 h-5 mr-2"
+              />
               Azure Portal
             </a>
           </div>

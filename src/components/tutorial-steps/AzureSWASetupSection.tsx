@@ -24,7 +24,7 @@ export const AzureSWASetupSection = () => {
             <div className="grid grid-cols-3 gap-4">
               <span className="font-medium">Name:</span>
               <span className="col-span-2">
-                <code className="bg-gray-100 px-2 py-1 rounded">my-gantt-webapp</code> (must be globally unique)
+                <code className="bg-gray-100 px-2 py-1 rounded">my-app-webapp</code> (must be globally unique)
               </span>
             </div>
             <div className="grid grid-cols-3 gap-4">
@@ -87,7 +87,7 @@ WEBSITE_NODE_DEFAULT_VERSION = ~20
 NODE_ENV = production
 
 # Your app-specific settings
-GANTT_DATA_FILE_PATH = ./public/storage.json
+APP_DATA_FILE_PATH = ./public/storage.json
 
 # Optional: Custom startup command
 # Go to Configuration → General settings → Startup Command:

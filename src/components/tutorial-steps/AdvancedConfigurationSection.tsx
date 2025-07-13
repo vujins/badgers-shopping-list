@@ -45,7 +45,7 @@ export const AdvancedConfigurationSection = () => {
 # DNS Configuration (example)
 Type: CNAME
 Name: www
-Value: my-gantt-webapp.azurewebsites.net
+Value: my-app-webapp.azurewebsites.net
 
 # For root domain (example)
 Type: A
@@ -70,7 +70,7 @@ Value: [IP from Azure portal]`}
               • <code className="bg-blue-100 px-2 py-1 rounded">SCM_DO_BUILD_DURING_DEPLOYMENT</code> = true
             </li>
             <li>
-              • <code className="bg-blue-100 px-2 py-1 rounded">GANTT_DATA_FILE_PATH</code> = ./public/storage.json
+              • <code className="bg-blue-100 px-2 py-1 rounded">APP_DATA_FILE_PATH</code> = ./public/storage.json
             </li>
           </ul>
         </div>

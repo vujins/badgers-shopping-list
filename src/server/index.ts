@@ -3,7 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import ganttRoutes from './routes/ganttRoutes.js';
+import appRoutes from './routes/routes.js';
 
 // ESM equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
@@ -28,7 +28,7 @@ if (isDevelopment) {
   );
 }
 
-app.use('/api', ganttRoutes);
+app.use('/api', appRoutes);
 
 // Only serve static files in production or when not in dev mode
 if (!isDevelopment) {
