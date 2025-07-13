@@ -15,8 +15,8 @@ export const Header = () => {
               </svg>
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Azure Static Web Apps Tutorial</h1>
-              <p className="text-gray-600">Complete guide to deploying React + Node.js on Azure</p>
+              <h1 className="text-2xl font-bold text-gray-900">Azure Web Apps Tutorial</h1>
+              <p className="text-gray-600">Complete guide to deploying React + Node.js on Azure Web Apps</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">

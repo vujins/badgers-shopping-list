@@ -4,9 +4,9 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Azure Static Web Apps Tutorial</h3>
+            <h3 className="text-lg font-semibold mb-4">Azure Web Apps Tutorial</h3>
             <p className="text-gray-400">
-              A comprehensive guide to deploying full-stack React and Node.js applications on Azure Static Web Apps with
+              A comprehensive guide to deploying full-stack React and Node.js applications on Azure Web Apps with
               authentication and CI/CD.
             </p>
           </div>
@@ -16,22 +16,22 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a
-                  href="https://docs.microsoft.com/en-us/azure/static-web-apps/"
+                  href="https://docs.microsoft.com/en-us/azure/app-service/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  Azure SWA Documentation
+                  Azure App Service Documentation
                 </a>
               </li>
               <li>
                 <a
-                  href="https://github.com/Azure/static-web-apps"
+                  href="https://github.com/Azure/app-service-linux-docs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  SWA GitHub Repository
+                  App Service GitHub Repository
                 </a>
               </li>
               <li>
@@ -61,7 +61,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2025 Azure Static Web Apps Tutorial. Vibe coded with React, TypeScript, and Tailwind CSS.</p>
+          <p>&copy; 2025 Azure Web Apps Tutorial. Vibe coded with React, TypeScript, and Tailwind CSS.</p>
         </div>
       </div>
     </footer>

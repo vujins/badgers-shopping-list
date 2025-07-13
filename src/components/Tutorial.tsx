@@ -44,7 +44,7 @@ export const Tutorial = () => {
     },
     {
       id: 'swa-setup',
-      title: 'Azure SWA Setup',
+      title: 'Azure Web App Setup',
       component: AzureSWASetupSection,
     },
     {
