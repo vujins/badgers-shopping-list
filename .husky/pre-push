@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Husky pre-push hook
+node scripts/pre-push.js 
