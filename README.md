@@ -16,7 +16,7 @@ Both client and backend are deployed on Azure Web App.
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/prjova37/Gantt
+   git clone https://github.com/kredenac/azure-web-app
    cd Gantt
    ```
 
@@ -85,12 +85,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Relevant links:
 
-1. [Storage Account](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/Microsoft_Azure_Storage/StorageAccount/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group/providers/Microsoft.Storage/storageAccounts/gantapistoragestd). It is mounted on the web app, so you can access it via https://ganttapi-azb0dwemccbxbwds.scm.westeurope-01.azurewebsites.net/DebugConsole/?shell=powershell at `C:\mounts\sample1\`
-1. [ganttapi App Service](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/WebsitesExtension/Website/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group/providers/Microsoft.Web/sites/ganttapi)
-1. [Gantt SWA - deprecated](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/WebsitesExtension/StaticSite/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group/providers/Microsoft.Web/staticSites/Gantt)
-1. [gantt2_group resource group](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/HubsExtension/ResourceGroups/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group)
+1. [Storage Account example (not used by this app)](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/Microsoft_Azure_Storage/StorageAccount/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group/providers/Microsoft.Storage/storageAccounts/gantapistoragestd). It is mounted on the web app, so you can access it via https://ganttapi-azb0dwemccbxbwds.scm.westeurope-01.azurewebsites.net/DebugConsole/?shell=powershell at `C:\mounts\sample1\`
+1. [App Service](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/WebsitesExtension/Website/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group/providers/Microsoft.Web/sites/ganttapi)
+1. [App resource group](https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/asset/HubsExtension/ResourceGroups/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/resourceGroups/gantt2_group)
 1. I have Added on the App Registration itself [here](https://ms.portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/~/Authentication/appId/b8a49903-6fac-45f9-a1a1-3717b12d70ea/isMSAApp~/false) a platform configuration (web) to enable token Id.
 1. Tenant Id: 72f988bf-86f1-41af-91ab-2d7cd011db47
-1. App Id for registered SWA (not the SWA id itself): 5678b60a-ac95-4fd1-be02-356ab88df00a
 1. Backend App Id: b8a49903-6fac-45f9-a1a1-3717b12d70ea
 1. To logout from webpage go to https://ganttapi-azb0dwemccbxbwds.westeurope-01.azurewebsites.net/.auth/logout

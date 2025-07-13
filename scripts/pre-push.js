@@ -24,7 +24,7 @@ function runCommand(command, description) {
     log(`✅ ${description} passed`, colors.green);
     return true;
   } catch (error) {
-    log(`❌ ${description} failed! Push to deploy_msit rejected.`, colors.red);
+    log(`❌ ${description} failed! Push to ${branch_to_check} rejected.`, colors.red);
     return false;
   }
 }
@@ -90,7 +90,7 @@ async function verifyServerStartup() {
 
     serverProcess.on('close', code => {
       if (!serverStarted) {
-        log('❌ Server process exited unexpectedly! Push to deploy_msit rejected.', colors.red);
+        log(`❌ Server process exited unexpectedly! Push to ${branch_to_check} rejected.`, colors.red);
         resolve(false);
       }
     });
@@ -99,7 +99,7 @@ async function verifyServerStartup() {
     const timeoutId = setTimeout(() => {
       if (!serverStarted) {
         log(
-          `❌ Server startup timed out (didn't see '!!! Storage path' within ${timeout}s)! Push to deploy_msit rejected.`,
+          `❌ Server startup timed out (didn't see '!!! Storage path' within ${timeout}s)! Push to ${branch_to_check} rejected.`,
           colors.red
         );
         serverProcess.kill();
@@ -114,8 +114,10 @@ async function verifyServerStartup() {
   });
 }
 
+const branch_to_check = 'deploy_msit';
+
 async function processInput() {
-  log('🔍 Pre-push hook: Checking push to deploy_msit branch...', colors.yellow);
+  log(`🔍 Pre-push hook: Checking push to ${branch_to_check} branch...`, colors.yellow);
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -133,7 +135,7 @@ async function processInput() {
       const branchName = remoteRef.replace('refs/heads/', '');
 
       // Only run checks when pushing to deploy_msit branch
-      if (branchName === 'deploy_msit') {
+      if (branchName === branch_to_check) {
         shouldRunChecks = true;
       } else {
         log(`📝 Pushing to ${branchName} branch - skipping build/test verification`, colors.yellow);
@@ -143,7 +145,7 @@ async function processInput() {
 
   rl.on('close', async () => {
     if (shouldRunChecks) {
-      log('📋 Pushing to deploy_msit branch - running build and test verification...', colors.yellow);
+      log(`📋 Pushing to ${branch_to_check} branch - running build and test verification...`, colors.yellow);
 
       // Run build
       if (!runCommand('npm run build', 'Running build')) {
@@ -161,7 +163,7 @@ async function processInput() {
         process.exit(1);
       }
 
-      log('🚀 All checks passed! Proceeding with push to deploy_msit...', colors.green);
+      log(`🚀 All checks passed! Proceeding with push to ${branch_to_check}...`, colors.green);
     }
 
     process.exit(0);
