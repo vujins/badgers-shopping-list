@@ -37,7 +37,7 @@ async function verifyServerStartup() {
   log('🖥️ Verifying server startup...', colors.yellow);
 
   return new Promise(resolve => {
-    const serverProcess = spawn('node', ['server.js'], {
+    const serverProcess = spawn('node', ['./dist/server/index.js'], {
       stdio: 'pipe',
       detached: false,
     });
@@ -49,7 +49,7 @@ async function verifyServerStartup() {
     // Listen for output from the server
     serverProcess.stdout.on('data', data => {
       const output = data.toString();
-      if (output.includes('!!! Storage path')) {
+      if (output.includes('server started')) {
         serverStarted = true;
         log('✅ Server started successfully (detected startup message)', colors.green);
 
@@ -76,7 +76,7 @@ async function verifyServerStartup() {
     serverProcess.stderr.on('data', data => {
       // Server might output startup info to stderr
       const output = data.toString();
-      if (output.includes('!!! Storage path')) {
+      if (output.includes('server started')) {
         serverStarted = true;
         log('✅ Server started successfully (detected startup message)', colors.green);
 
@@ -99,7 +99,7 @@ async function verifyServerStartup() {
     const timeoutId = setTimeout(() => {
       if (!serverStarted) {
         log(
-          `❌ Server startup timed out (didn't see '!!! Storage path' within ${timeout}s)! Push to ${branch_to_check} rejected.`,
+          `❌ Server startup timed out (didn't see 'server started' within ${timeout}s)! Push to ${branch_to_check} rejected.`,
           colors.red
         );
         serverProcess.kill();
@@ -114,7 +114,7 @@ async function verifyServerStartup() {
   });
 }
 
-const branch_to_check = 'deploy_msit';
+const branch_to_check = 'main';
 
 async function processInput() {
   log(`🔍 Pre-push hook: Checking push to ${branch_to_check} branch...`, colors.yellow);
@@ -134,7 +134,7 @@ async function processInput() {
       // Extract branch name from remote ref
       const branchName = remoteRef.replace('refs/heads/', '');
 
-      // Only run checks when pushing to deploy_msit branch
+      // Only run checks when pushing to branch
       if (branchName === branch_to_check) {
         shouldRunChecks = true;
       } else {

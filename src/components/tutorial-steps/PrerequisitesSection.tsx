@@ -3,7 +3,6 @@ import { links } from '../links';
 export const PrerequisitesSection = () => {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-900">Prerequisites</h2>
       <div className="space-y-4">
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 p-6 rounded-lg">
           <div className="flex items-center mb-3">

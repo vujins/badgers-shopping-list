@@ -3,7 +3,6 @@ import { links } from '../links';
 export const AzureWebAppSetupSection = () => {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-900">Azure Web Apps Setup</h2>
       <div className="space-y-4">
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4">
           <h3 className="font-semibold text-blue-900">Step 1: Install Azure Extension</h3>

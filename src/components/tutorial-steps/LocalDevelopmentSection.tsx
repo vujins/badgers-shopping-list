@@ -3,7 +3,6 @@ import { links } from '../links';
 export const LocalDevelopmentSection = () => {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-900">Local Development Setup</h2>
       <div className="space-y-4">
         <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-lg">
           <h3 className="font-semibold mb-3 text-green-800">🚀 Try It Out Locally First</h3>

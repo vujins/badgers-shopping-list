@@ -1,7 +1,6 @@
 export const DeploymentProcessSection = () => {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl font-bold text-gray-900">Deployment Process</h2>
       <div className="space-y-4">
         <div className="bg-green-50 border-l-4 border-green-400 p-4">
           <h3 className="font-semibold text-green-900">Automatic Deployment</h3>

@@ -1,6 +1,6 @@
 export const links = {
   azureRoot: 'https://portal.azure.com',
-  akaMs: 'https://aka.ms/web-app-guide',
+  akaMs: 'http://aka.ms/azure-web-app',
   akaMsRoot: 'https://aka.ms',
   azureSubscription:
     'https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/resource/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/overview',

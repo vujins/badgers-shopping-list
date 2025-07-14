@@ -1,6 +1,7 @@
 export { AuthenticationSection } from './AuthenticationSection';
 export { AzureWebAppSetupSection } from './AzureWebAppSetupSection';
 export { CodebaseStructureSection } from './CodebaseStructureSection';
+export { CommunityShowcaseSection } from './CommunityShowcaseSection';
 export { DeploymentProcessSection } from './DeploymentProcessSection';
 export { GitHubActionsSection } from './GitHubActionsSection';
 export { LocalDevelopmentSection } from './LocalDevelopmentSection';

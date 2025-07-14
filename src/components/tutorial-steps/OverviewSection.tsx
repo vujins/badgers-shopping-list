@@ -4,12 +4,12 @@ export const OverviewSection = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center space-x-4">
-        <h2 className="text-3xl font-bold text-gray-900">Azure Web Apps Tutorial</h2>
+        <h2 className="text-3xl font-bold text-gray-900">Azure Web Apps Guide</h2>
       </div>
 
       <p className="text-lg text-gray-700">
-        This tutorial will guide you through setting up and deploying a full-stack React and Node.js application to
-        Azure Web Apps with CI/CD through GitHub Actions.
+        This guide will guide you through setting up and deploying a full-stack React and Node.js application to Azure
+        Web Apps with CI/CD through GitHub Actions.
       </p>
 
       <div className="bg-blue-50 border-l-4 border-blue-400 p-4">
@@ -34,7 +34,7 @@ export const OverviewSection = () => {
           />
         </div>
         <p className="text-sm text-gray-600 mt-3 text-center">
-          <em>Azure Web Apps deployment architecture</em>
+          <em>Here's a cat instead</em>
         </p>
       </div>
     </div>
