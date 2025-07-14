@@ -125,7 +125,7 @@ export const Tutorial = () => {
           <div className="lg:w-72 lg:flex-shrink-0">
             <div className="space-y-6">
               {/* Progress Bar */}
-              <div className="sticky top-8 z-10">
+              <div>
                 <ProgressBar
                   percentage={getProgressPercentage()}
                   completedSections={progress.completedSections.length}
@@ -134,7 +134,7 @@ export const Tutorial = () => {
               </div>
 
               {/* Navigation Menu */}
-              <div className="bg-white rounded-lg shadow-sm border border-gray-200 sticky top-32 z-100">
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                 <div className="p-4 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-gray-900">Guide Sections</h2>
@@ -175,7 +175,7 @@ export const Tutorial = () => {
               </div>
 
               {/* Achievement Badges */}
-              <div className="sticky top-[580px] z-10">
+              <div>
                 <AchievementBadges
                   unlockedAchievements={getUnlockedAchievements()}
                   availableAchievements={getAvailableAchievements()}
