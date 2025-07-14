@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import {
   AdvancedConfigurationSection,
-  APIConfigurationSection,
-  AzureSWASetupSection,
+  AuthenticationSection,
+  AzureWebAppSetupSection,
   CodebaseStructureSection,
   DeploymentProcessSection,
   GitHubActionsSection,
@@ -33,19 +33,19 @@ export const Tutorial = () => {
       component: PrerequisitesSection,
     },
     {
-      id: 'codebase',
-      title: 'Codebase Structure',
-      component: CodebaseStructureSection,
-    },
-    {
       id: 'local-setup',
       title: 'Local Development',
       component: LocalDevelopmentSection,
     },
     {
-      id: 'swa-setup',
+      id: 'codebase',
+      title: 'Codebase Structure',
+      component: CodebaseStructureSection,
+    },
+    {
+      id: 'azure-web-app-setup',
       title: 'Azure Web App Setup',
-      component: AzureSWASetupSection,
+      component: AzureWebAppSetupSection,
     },
     {
       id: 'github-actions',
@@ -53,18 +53,18 @@ export const Tutorial = () => {
       component: GitHubActionsSection,
     },
     {
-      id: 'api-configuration',
-      title: 'API Configuration',
-      component: APIConfigurationSection,
-    },
-    {
       id: 'deployment',
       title: 'Deployment Process',
       component: DeploymentProcessSection,
     },
     {
+      id: 'authentication',
+      title: 'Authentication',
+      component: AuthenticationSection,
+    },
+    {
       id: 'configuration',
-      title: 'Advanced Configuration',
+      title: 'Tinkering',
       component: AdvancedConfigurationSection,
     },
     {

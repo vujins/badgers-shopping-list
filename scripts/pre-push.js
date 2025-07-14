@@ -157,7 +157,7 @@ async function processInput() {
         process.exit(1);
       }
 
-      // Verify server startup
+      //Verify server startup
       const serverStarted = await verifyServerStartup();
       if (!serverStarted) {
         process.exit(1);

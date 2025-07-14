@@ -1,3 +1,5 @@
+import { links } from '../links';
+
 export const PrerequisitesSection = () => {
   return (
     <div className="space-y-6">
@@ -15,8 +17,8 @@ export const PrerequisitesSection = () => {
             </h3>
           </div>
           <p className="text-gray-700 mb-2">
-            For rapid prototype development, we <strong>highly recommend</strong> using AI coding assistants instead of
-            manual coding:
+            For rapid prototype development, a <strong>strong recommendation</strong> to use AI coding assistants
+            instead of manual coding:
           </p>
           <ul className="space-y-1 text-gray-700 ml-4">
             <li>
@@ -27,7 +29,7 @@ export const PrerequisitesSection = () => {
             </li>
           </ul>
           <p className="text-sm text-gray-600 mt-2 italic">
-            These tools significantly accelerate development and reduce manual coding effort for prototypes.
+            These tools significantly accelerate development and help in debugging issues.
           </p>
         </div>
 
@@ -35,12 +37,24 @@ export const PrerequisitesSection = () => {
           <h3 className="font-semibold text-gray-900 mb-2">Required Tools:</h3>
           <ul className="space-y-2 text-gray-700">
             <li>
-              • <strong>Node.js 20.x</strong> or later
+              •{' '}
+              <strong>
+                <a
+                  href={links.node}
+                  className="text-blue-600 hover:text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Node.js
+                </a>{' '}
+                20.x
+              </strong>{' '}
+              or later
             </li>
             <li>
               • <strong>Azure Account</strong> with active subscription. For internal use, access existing one via{' '}
               <a
-                href="https://ms.portal.azure.com/#@microsoft.onmicrosoft.com/resource/subscriptions/451c83f5-4265-425a-9b44-c12bc2d76801/overview"
+                href={links.azureSubscription}
                 className="text-blue-600 hover:text-blue-800 underline"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -55,7 +69,18 @@ export const PrerequisitesSection = () => {
               • <strong>Git</strong> for version control
             </li>
             <li>
-              • <strong>VS Code</strong> (recommended) with Azure extensions
+              •{' '}
+              <strong>
+                <a
+                  href={links.vscode}
+                  className="text-blue-600 hover:text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  VS Code
+                </a>
+              </strong>{' '}
+              (recommended) with Azure extensions
             </li>
           </ul>
         </div>
@@ -63,29 +88,26 @@ export const PrerequisitesSection = () => {
         <div className="bg-blue-50 border-l-4 border-blue-400 p-4">
           <h3 className="font-semibold text-blue-900">Platform Compatibility:</h3>
           <p className="text-blue-800">
-            <strong>Note:</strong> This repository and all commands have been tested on Windows only.
+            <strong>Note:</strong> This repository and all commands have been tested on Windows only. The Azure backend
+            we'll create uses Linux, but it's not tested on Mac.
           </p>
-        </div>
-
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-          <h3 className="font-semibold text-yellow-900">Azure CLI Setup:</h3>
-          <pre className="mt-2 bg-black text-green-400 p-3 rounded text-sm overflow-x-auto">
-            {`# Install Azure CLI
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-# Login to Azure
-az login
-
-# Verify login
-az account show`}
-          </pre>
         </div>
 
         <div className="bg-purple-50 border-l-4 border-purple-400 p-4">
           <h3 className="font-semibold text-purple-900">VS Code Extensions:</h3>
-          <p className="text-purple-800 mb-2">Install the Azure App Service extension for seamless deployment:</p>
+          <p className="text-purple-800 mb-2">Install the Azure App Service extension for creating Azure Resources:</p>
           <ol className="list-decimal list-inside space-y-1 text-purple-700 ml-4">
-            <li>Open VS Code</li>
+            <li>
+              Open{' '}
+              <a
+                href={links.vscode}
+                className="text-purple-600 hover:text-purple-800 underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VS Code
+              </a>
+            </li>
             <li>
               Press <code className="bg-purple-100 px-1 rounded">Ctrl+Shift+X</code> to open Extensions
             </li>

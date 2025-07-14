@@ -26,13 +26,29 @@ export const DeploymentProcessSection = () => {
                 2
               </span>
               <div>
+                <h4 className="font-semibold">Pre-Push Hooks</h4>
+                <p className="text-gray-600">
+                  Git hooks automatically run build, tests, and verify backend is live
+                  <br />
+                  <span className="text-gray-500 italic">
+                    I've learned this the hard way by skipping this step too many times, since debugging issues on Azure
+                    is harder than locally.
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                3
+              </span>
+              <div>
                 <h4 className="font-semibold">GitHub Actions Trigger</h4>
                 <p className="text-gray-600">Workflow automatically starts building</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                3
+                4
               </span>
               <div>
                 <h4 className="font-semibold">Build Process</h4>
@@ -41,7 +57,7 @@ export const DeploymentProcessSection = () => {
             </div>
             <div className="flex items-start space-x-3">
               <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                4
+                5
               </span>
               <div>
                 <h4 className="font-semibold">Deployment</h4>

@@ -15,11 +15,11 @@ export const OverviewSection = () => {
       <div className="bg-blue-50 border-l-4 border-blue-400 p-4">
         <h3 className="font-semibold text-blue-900">What You'll Learn:</h3>
         <ul className="mt-2 text-blue-800 space-y-1">
+          <li>• Repo setup for prototyping deployable web apps</li>
           <li>• How to configure Azure Web Apps</li>
           <li>• Setting up GitHub Actions for CI/CD</li>
           <li>• Deploying React frontend and Node.js backend together</li>
-          <li>• Configuring authentication and custom domains</li>
-          <li>• Managing environment variables and app settings</li>
+          <li>• Configuring authentication </li>
         </ul>
       </div>
 

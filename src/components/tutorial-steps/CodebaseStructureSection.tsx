@@ -1,3 +1,5 @@
+import { links } from '../links';
+
 export const CodebaseStructureSection = () => {
   return (
     <div className="space-y-6">
@@ -7,7 +9,7 @@ export const CodebaseStructureSection = () => {
         <pre className="bg-black text-green-400 p-4 rounded text-sm overflow-x-auto">
           {`azure-web-app/
 ├── src/
-│   ├── components/          # React components
+│   ├── components/         # React components
 │   ├── hooks/              # Custom React hooks
 │   ├── api/                # API client utilities
 │   ├── server/             # Express.js backend
@@ -15,11 +17,7 @@ export const CodebaseStructureSection = () => {
 │   │   └── routes/         # API routes
 │   ├── App.tsx             # Main React component
 │   └── main.tsx            # React entry point
-├── public/                 # Static assets
-├── package.json            # Dependencies and scripts
-├── vite.config.ts          # Vite configuration
-├── tsconfig.json           # TypeScript config
-└── server.js               # Production server`}
+├── public/                 # Static assets`}
         </pre>
       </div>
       <div className="space-y-4">
@@ -28,19 +26,68 @@ export const CodebaseStructureSection = () => {
           <div className="bg-blue-50 p-4 rounded-lg">
             <h4 className="font-semibold text-blue-900">Frontend</h4>
             <ul className="mt-2 text-blue-800 space-y-1">
-              <li>• React 18 with TypeScript</li>
+              <li>
+                •{' '}
+                <a
+                  href={links.react}
+                  className="text-blue-600 hover:text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  React
+                </a>{' '}
+                18 with{' '}
+                <a
+                  href={links.typescript}
+                  className="text-blue-600 hover:text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TypeScript
+                </a>
+              </li>
               <li>• Vite for build tooling</li>
-              <li>• Tailwind CSS for styling</li>
+              <li>
+                •{' '}
+                <a
+                  href={links.tailwind}
+                  className="text-blue-600 hover:text-blue-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tailwind CSS
+                </a>{' '}
+                for styling
+              </li>
               <li>• Jest for testing</li>
             </ul>
           </div>
           <div className="bg-green-50 p-4 rounded-lg">
             <h4 className="font-semibold text-green-900">Backend</h4>
             <ul className="mt-2 text-green-800 space-y-1">
-              <li>• Node.js with Express</li>
-              <li>• TypeScript</li>
-              <li>• CORS enabled</li>
-              <li>• JSON file storage</li>
+              <li>
+                •{' '}
+                <a
+                  href={links.node}
+                  className="text-green-600 hover:text-green-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Node.js
+                </a>{' '}
+                with Express
+              </li>
+              <li>
+                •{' '}
+                <a
+                  href={links.typescript}
+                  className="text-green-600 hover:text-green-800 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TypeScript
+                </a>
+              </li>
             </ul>
           </div>
         </div>

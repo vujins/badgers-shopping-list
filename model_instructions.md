@@ -4,7 +4,7 @@ This is for the model to reference for the overall context about the repository.
 
 ## Architecture
 
-This application is now deployed as a **unified Azure Web App** where both the frontend and backend are served from the same origin:
+This application is deployed as a **Azure Web App** where both the frontend and backend are served from the same origin:
 
 - **Frontend**: Uses ViteJs, written in TypeScript, React, Tailwind, and Zustand
 - **Backend**: Express.js API server
@@ -12,8 +12,6 @@ This application is now deployed as a **unified Azure Web App** where both the f
 - **Deployment**: Single Azure Web App service
 
 ## URL Access
-
-**Production URL**: `https://ganttapi-azb0dwemccbxbwds.westeurope-01.azurewebsites.net`
 
 - Frontend application: Root URL
 - API endpoints: `/api/*`

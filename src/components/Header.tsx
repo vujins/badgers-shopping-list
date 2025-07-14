@@ -1,27 +1,20 @@
+import { links } from './links';
+
 export const Header = () => {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <div className="bg-blue-600 rounded-lg p-2">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </div>
+            <div className=" rounded-lg p-1 text-4xl">🚢</div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Azure Web Apps Tutorial</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Azure Web Apps Guide</h1>
               <p className="text-gray-600">Complete guide to deploying React + Node.js on Azure Web Apps</p>
             </div>
           </div>
           <div className="flex items-center space-x-4">
             <a
-              href="https://github.com/kredenac/azure-web-app"
+              href={links.repoLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
@@ -32,16 +25,12 @@ export const Header = () => {
               View on GitHub
             </a>
             <a
-              href="https://portal.azure.com"
+              href={links.azureRoot}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-4 py-2 bg-blue-300 text-white rounded-md hover:bg-blue-700 transition-colors"
             >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg"
-                alt="Microsoft Azure Logo"
-                className="w-5 h-5 mr-2"
-              />
+              <img src={links.azureLogo} alt="Microsoft Azure Logo" className="w-5 h-5 mr-2" />
               Azure Portal
             </a>
           </div>

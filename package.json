@@ -2,7 +2,7 @@
   "name": "azure-web-app-guide",
   "version": "1.0.0",
   "type": "module",
-  "main": "server.js",
+  "main": "dist/server/index.js",
   "scripts": {
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
@@ -10,8 +10,8 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "cross-env NODE_ENV=development nodemon --exec \"tsx --inspect=9229 src/server/index.ts\"",
     "dev:client": "vite",
-    "start": "node server.js",
-    "kill-port": "powershell \"$proc = (Get-NetTCPConnection -LocalPort 3002 -ErrorAction SilentlyContinue).OwningProcess; if ($proc) { taskkill /pid $proc /f } else { Write-Host 'No process found on port' }\"",
+    "start": "node dist/server/index.js",
+    "kill-port": "node scripts/kill-port.js",
     "test": "jest ",
     "test:watch": "jest --watch",
     "prepare": "husky"
