@@ -7,7 +7,6 @@ import {
   AdvancedConfigurationSection,
   AuthenticationSection,
   AzureWebAppSetupSection,
-  CodebaseStructureSection,
   CommunityShowcaseSection,
   DeploymentProcessSection,
   GitHubActionsSection,
@@ -15,6 +14,7 @@ import {
   OverviewSection,
   PrerequisitesSection,
   TroubleshootingSection,
+  VibingSection
 } from './tutorial-steps';
 
 interface TutorialSection {
@@ -57,8 +57,8 @@ export const Tutorial = () => {
     },
     {
       id: 'codebase',
-      title: 'Codebase Structure',
-      component: CodebaseStructureSection,
+      title: 'Start Vibing',
+      component: VibingSection,
     },
     {
       id: 'azure-web-app-setup',

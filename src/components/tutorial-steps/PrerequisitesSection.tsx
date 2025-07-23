@@ -21,7 +21,15 @@ export const PrerequisitesSection = () => {
           </p>
           <ul className="space-y-1 text-gray-700 ml-4">
             <li>
-              • <strong>GitHub Copilot</strong> - AI pair programmer
+              • <strong>
+                    GitHub Copilot
+                </strong> - AI pair programmer (free for Microsoft employees). 
+                <a
+                    href="https://copilot.github.microsoft.com/"
+                    className="text-blue-600 hover:text-blue-800 underline ml-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  > Setup Instructions</a>
             </li>
             <li>
               • <strong>Cursor Agent</strong> - AI-powered code editor

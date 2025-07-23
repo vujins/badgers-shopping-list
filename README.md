@@ -7,6 +7,8 @@ Access the website [here](https://web-app-guide-feeuembjhvhveudu.northeurope-01.
 A web app serving as a guide to build and deploy web apps to Azure. Built with Vite, React, Tailwind, Node and Express.
 Both client and backend are deployed on Azure Web App.
 
+Pro tip: `.github/copilot-instructions.md` contains the default model instructions incorporated in each agent request.
+
 ### Local Development
 
 1. **Clone the repository**

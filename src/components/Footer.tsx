@@ -6,14 +6,6 @@ export const Footer = () => {
       <div className=" mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4">Azure Web Apps Guide</h3>
-            <p className="text-gray-400">
-              A comprehensive guide to deploying full-stack React and Node.js applications on Azure Web Apps with
-              authentication and CI/CD.
-            </p>
-          </div>
-
-          <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
