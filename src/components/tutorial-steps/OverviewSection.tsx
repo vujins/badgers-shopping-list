@@ -58,7 +58,7 @@ export const OverviewSection = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center space-x-4">
-        <h2 className="text-3xl font-bold text-gray-900">Azure Web Apps Guide</h2>
+        <h2 className="text-3xl font-bold text-gray-900"> Guide for Azure Web Apps</h2>
       </div>
 
       <p className="text-lg text-gray-700">

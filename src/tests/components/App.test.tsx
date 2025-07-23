@@ -9,7 +9,7 @@ const renderAndWaitForApp = async () => {
   });
 
   await waitFor(() => {
-    expect(screen.getByRole('heading', { name: 'Azure Web Apps Guide', level: 1 })).toBeInTheDocument();
+    expect(screen.getAllByRole('heading', { name: 'Azure Web Apps Guide', level: 1 })[0]).toBeInTheDocument();
   });
 };
 
