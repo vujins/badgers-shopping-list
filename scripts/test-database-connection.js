@@ -26,6 +26,12 @@ const config = {
   requestTimeout: 30000,
 };
 
+// Test configuration with IP address as fallback
+const configWithIP = {
+  ...config,
+  server: '52.146.133.133' // Direct IP from nslookup
+};
+
 async function testConnection() {
   console.log('🧪 Testing Azure SQL Database Connection...\n');
   
@@ -82,7 +88,30 @@ async function testConnection() {
     console.log('   Your Recipe Planner app should work with Azure SQL Database');
     
   } catch (error) {
+    console.log('❌ Database connection failed:');
+    console.log(`   Error Code: ${error.code}`);
+    console.log(`   Error Message: ${error.message}`);
+    console.log(`   Full Error: ${error}\n`);
+
+    // If hostname fails, try IP address
+    if (error.code === 'ESOCKET' && config.server !== '52.146.133.133') {
+      console.log('🔄 Trying connection with direct IP address...');
+      try {
+        const ipPool = new sql.ConnectionPool(configWithIP);
+        await ipPool.connect();
+        console.log('✅ IP connection successful! This indicates a DNS resolution issue.');
+        console.log('💡 Consider updating your hosts file or DNS settings');
+        await ipPool.close();
+        process.exit(0);
+      } catch (ipError) {
+        console.log('❌ IP connection also failed:');
+        console.log(`   Error: ${ipError.message}\n`);
+      }
+    }
     console.log('\n❌ Database connection failed:');
+    console.log(`   Error Code: ${error.code || 'UNKNOWN'}`);
+    console.log(`   Error Message: ${error.message}`);
+    console.log(`   Full Error:`, error);
     
     if (error.code === 'ENOTFOUND' || error.message.includes('getaddrinfo ENOTFOUND')) {
       console.log('   🔍 Server not found - this usually means:');
