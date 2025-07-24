@@ -3,7 +3,7 @@ import { useAppStore } from '../hooks';
 import { Recipe } from '../utils/types';
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const mealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Snack 1', 'Snack 2'];
+const mealTypes = ['Breakfast', 'Snack 1', 'Lunch', 'Dinner', 'Snack 2'];
 
 export function WeeklyPlanner() {
   const { currentSchedule, recipes, createWeeklySchedule, assignMealToSlot, removeMealFromSlot } = useAppStore();

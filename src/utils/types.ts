@@ -13,6 +13,7 @@ export interface Recipe {
   id: string;
   name: string;
   description?: string;
+  instructions?: string; // Added for detailed cooking instructions
   ingredients: RecipeIngredient[];
   servings: number;
   cookingTime?: number; // in minutes

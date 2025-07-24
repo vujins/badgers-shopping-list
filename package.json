@@ -14,6 +14,7 @@
     "kill-port": "node scripts/kill-port.js",
     "test": "jest ",
     "test:watch": "jest --watch",
+    "test:db": "node scripts/test-database-connection.js",
     "prepare": "husky"
   },
   "keywords": [],
@@ -22,11 +23,13 @@
   "description": "",
   "dependencies": {
     "@azure/storage-blob": "^12.27.0",
+    "@types/mssql": "^9.1.7",
     "@types/uuid": "^10.0.0",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "express": "^4.21.2",
+    "mssql": "^11.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "uuid": "^11.1.0",

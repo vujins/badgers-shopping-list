@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { IngredientManager, Navigation, RecipeManager, ShoppingList, WeeklyPlanner } from './components';
+import {
+  ConnectionStatus,
+  IngredientManager,
+  Navigation,
+  RecipeManager,
+  ShoppingList,
+  WeeklyPlanner,
+} from './components';
 
 export const App = () => {
   const [activeTab, setActiveTab] = useState('ingredients');
@@ -34,8 +41,13 @@ export const App = () => {
       {/* Navigation */}
       <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
 
+      {/* Connection Status */}
+      <div className="max-w-7xl mx-auto px-4 pt-4">
+        <ConnectionStatus />
+      </div>
+
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8">{renderContent()}</main>
+      <main className="max-w-7xl mx-auto px-4 pb-8">{renderContent()}</main>
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-16">

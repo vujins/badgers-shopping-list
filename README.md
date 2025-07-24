@@ -6,24 +6,27 @@ A comprehensive meal planning application that helps you manage ingredients, cre
 
 ### 📦 Ingredient Management
 
-- Add ingredients with custom units (cups, grams, pieces, etc.)
+- Add and edit ingredients with custom units (cups, grams, pieces, etc.)
 - Remove ingredients you no longer need
-- All data persists locally in your browser
+- Search and filter ingredients
+- Data synchronization with Azure SQL Database
 
-### 📝 Recipe Creation
+### 📝 Recipe Creation & Editing
 
 - Create detailed recipes with multiple ingredients
+- Edit existing recipes with full CRUD functionality
 - Set difficulty levels (Easy, Medium, Hard)
 - Categorize recipes (Breakfast, Lunch, Dinner, Snack, Dessert)
 - Specify servings and cooking time
-- Add descriptions for your recipes
+- Add descriptions and instructions for your recipes
 
 ### 📅 Weekly Meal Planner
 
 - Plan 5 meals per day (Breakfast, Lunch, Dinner, 2 Snacks) for 7 days
-- Drag and drop interface to assign recipes to meal slots
+- Search and filter recipes when adding to meal slots
 - Visual weekly grid layout
 - Easy meal removal and reassignment
+- Multiple weekly schedules support
 
 ### 🛒 Smart Shopping List
 
@@ -32,6 +35,14 @@ A comprehensive meal planning application that helps you manage ingredients, cre
 - Shows which recipes use each ingredient
 - Copy to clipboard or download as text file
 - Shareable format for easy grocery shopping
+
+### ☁️ Cloud Integration
+
+- **Azure SQL Database** integration for data persistence
+- **Hybrid offline/online** functionality
+- **Automatic synchronization** when online
+- **Local storage fallback** when offline
+- **Connection status indicator**
 
 ## 🚀 Getting Started
 
@@ -59,6 +70,26 @@ A comprehensive meal planning application that helps you manage ingredients, cre
 4. **Access the application**
    - Frontend: `http://localhost:3000`
    - Backend API: `http://localhost:3000/api`
+
+### Azure Database Setup (Optional)
+
+For production use or to sync data across devices:
+
+1. **Follow the Azure Database Setup Guide**: See [AZURE_DATABASE_SETUP.md](./AZURE_DATABASE_SETUP.md)
+
+2. **Configure environment variables**:
+
+   ```bash
+   cp .env.example .env
+   # Edit .env with your Azure SQL Database credentials
+   ```
+
+3. **The app will automatically**:
+   - Connect to Azure SQL Database when online
+   - Fall back to local storage when offline
+   - Show connection status in the UI
+
+**Note**: The app works perfectly without Azure Database setup - it will use local browser storage.
 
 ## 📱 How to Use
 

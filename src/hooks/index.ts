@@ -1,1 +1,2 @@
-export { useAppStore } from './useAppStore';
+export { useAppStore as useLocalAppStore } from './useAppStore';
+export { useAppStore } from './useAppStoreWithBackend';
