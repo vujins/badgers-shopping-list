@@ -6,10 +6,12 @@ This guide will help you set up Azure SQL Database for your Recipe Planner appli
 
 If you're getting a connection error, the most likely issue is an incorrect server name:
 
-1. **Go to Azure Portal** → **SQL databases** → **Your database**
-2. **Copy the exact "Server name"** (should end with `.database.windows.net`)
-3. **Update your `.env` file** with the correct server name
-4. **Restart your development server**: `npm run dev`
+1. **Test your connection**: `npm run test:db` (this will show detailed error info)
+2. **Go to Azure Portal** → **SQL databases** → **Your database**
+3. **Copy the exact "Server name"** (should end with `.database.windows.net`)
+4. **Update your `.env` file** with the correct server name
+5. **Test again**: `npm run test:db`
+6. **Restart your development server**: `npm run dev`
 
 If you don't have a server yet, follow the full setup guide below.
 

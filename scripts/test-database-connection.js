@@ -7,8 +7,8 @@
  * Run with: node scripts/test-database-connection.js
  */
 
-const sql = require('mssql');
-const dotenv = require('dotenv');
+import sql from 'mssql';
+import dotenv from 'dotenv';
 
 // Load environment variables
 dotenv.config();
@@ -84,7 +84,7 @@ async function testConnection() {
   } catch (error) {
     console.log('\n❌ Database connection failed:');
     
-    if (error.code === 'ENOTFOUND') {
+    if (error.code === 'ENOTFOUND' || error.message.includes('getaddrinfo ENOTFOUND')) {
       console.log('   🔍 Server not found - this usually means:');
       console.log('      1. The server name is incorrect');
       console.log('      2. The server doesn\'t exist in Azure');
@@ -93,6 +93,11 @@ async function testConnection() {
       console.log('      1. Go to Azure Portal → SQL databases → Your database');
       console.log('      2. Copy the exact "Server name" (ends with .database.windows.net)');
       console.log('      3. Update your .env file with the correct server name');
+      console.log('\n   🚀 Quick Start:');
+      console.log('      If you don\'t have an Azure SQL Database yet:');
+      console.log('      1. Go to https://portal.azure.com');
+      console.log('      2. Create a new SQL Database');
+      console.log('      3. Follow the guide in AZURE_DATABASE_SETUP.md');
     } else if (error.code === 'ELOGIN') {
       console.log('   🔐 Login failed - this usually means:');
       console.log('      1. Wrong username or password');
