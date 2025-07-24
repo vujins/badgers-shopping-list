@@ -41,8 +41,9 @@ const apiCall = async (endpoint: string, options: RequestInit = {}): Promise<any
     throw new Error(errorMessage);
   }
 
-  const parseJson = method !== 'DELETE';
-  return parseJson ? response.json() : undefined;
+  // Don't parse JSON for DELETE requests or 204 No Content responses
+  const shouldParseJson = method !== 'DELETE' && response.status !== 204;
+  return shouldParseJson ? response.json() : undefined;
 };
 
 // Ingredient API functions

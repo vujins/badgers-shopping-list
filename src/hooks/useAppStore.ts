@@ -27,7 +27,7 @@ interface AppStore {
 }
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const mealTypes = ['Breakfast', 'Snack 1', 'Lunch', 'Dinner', 'Snack 2'];
+const mealTypes = ['Breakfast', 'Snack 1', 'Lunch', 'Snack 2', 'Dinner'];
 
 export const useAppStore = create<AppStore>()(
   persist(

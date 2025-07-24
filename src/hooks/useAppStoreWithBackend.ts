@@ -40,7 +40,7 @@ interface AppStore {
 }
 
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const mealTypes = ['Breakfast', 'Snack 1', 'Lunch', 'Dinner', 'Snack 2'];
+const mealTypes = ['Breakfast', 'Snack 1', 'Lunch', 'Snack 2', 'Dinner'];
 
 // Helper function to check if we're online and can connect to the API
 const checkOnlineStatus = async (): Promise<boolean> => {

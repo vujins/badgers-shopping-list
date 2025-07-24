@@ -13,7 +13,7 @@ const app = express();
 
 // Use different ports for development vs production
 const isDevelopment = process.env.NODE_ENV === 'development';
-const PORT = process.env.PORT || (isDevelopment ? 3002 : 3000);
+const PORT = isDevelopment ? 3002 : (process.env.PORT || 3000);
 
 // Middleware
 app.use(bodyParser.json());
@@ -52,5 +52,8 @@ if (!isDevelopment) {
 
 // Start the server
 app.listen(PORT, () => {
+  console.log(`🚀 Recipe Planner API server listening on port ${PORT}`);
+  console.log(`   Server URL: http://localhost:${PORT}`);
+  console.log(`   API endpoints: http://localhost:${PORT}/api/`);
   console.log(`Serving static files from: ${path.join(__dirname, '../../dist/client')}`);
 });
