@@ -9,11 +9,11 @@ const renderAndWaitForApp = async () => {
   });
 
   await waitFor(() => {
-    expect(screen.getAllByRole('heading', { name: 'Azure Web Apps Guide', level: 1 })[0]).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: '🍽️ Recipe Planner & Shopping List', level: 1 })).toBeInTheDocument();
   });
 };
 
-describe('Main App Component', () => {
+describe('Recipe Planner App', () => {
   beforeEach(() => {
     global.fetch = mockSuccessfulFetch();
   });
@@ -22,7 +22,7 @@ describe('Main App Component', () => {
     jest.restoreAllMocks();
   });
 
-  test('renders without crashing', async () => {
+  test('renders without crashing and shows main heading', async () => {
     await renderAndWaitForApp();
   });
 });
