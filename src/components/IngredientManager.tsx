@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../hooks';
-import { Ingredient } from '../utils/types';
+import { Ingredient } from '../server/types';
 
 export function IngredientManager() {
   const { ingredients, addIngredient, updateIngredient, removeIngredient } = useAppStore();

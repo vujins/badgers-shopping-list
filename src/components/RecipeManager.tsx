@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../hooks';
-import { Recipe, RecipeIngredient } from '../utils/types';
+import { Recipe, RecipeIngredient } from '../server/types';
 
 export function RecipeManager() {
   const { recipes, ingredients, addRecipe, updateRecipe, removeRecipe } = useAppStore();

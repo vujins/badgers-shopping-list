@@ -1,4 +1,4 @@
-import { Ingredient, Recipe, WeeklySchedule } from '../utils/types';
+import { Ingredient, Recipe, WeeklySchedule } from '../server/types';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const API_BASE_URL = isDevelopment ? 'http://localhost:3002/api' : '/api';

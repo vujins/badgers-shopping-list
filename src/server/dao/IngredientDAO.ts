@@ -1,7 +1,7 @@
 import sql from 'mssql';
 import { v4 as uuidv4 } from 'uuid';
-import { Ingredient } from '../../utils/types.js';
 import DatabaseService from '../config/database.js';
+import { Ingredient } from '../types.js';
 
 export class IngredientDAO {
   private db = DatabaseService.getInstance();

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Ingredient, MealSlot, Recipe, ShoppingListItem, WeeklySchedule } from '../utils/types';
+import { Ingredient, MealSlot, Recipe, ShoppingListItem, WeeklySchedule } from '../server/types';
 
 interface AppStore {
   // Ingredients

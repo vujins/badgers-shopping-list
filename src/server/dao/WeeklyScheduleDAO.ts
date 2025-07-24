@@ -1,7 +1,7 @@
 import sql from 'mssql';
 import { v4 as uuidv4 } from 'uuid';
-import { MealSlot, WeeklySchedule } from '../../utils/types.js';
 import DatabaseService from '../config/database.js';
+import { MealSlot, WeeklySchedule } from '../types.js';
 import { RecipeDAO } from './RecipeDAO.js';
 
 export class WeeklyScheduleDAO {
