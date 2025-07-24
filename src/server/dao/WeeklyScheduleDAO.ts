@@ -180,7 +180,48 @@ export class WeeklyScheduleDAO {
   }
 
   async getCurrentSchedule(): Promise<WeeklySchedule | null> {
-    const schedules = await this.getAll();
-    return schedules.length > 0 ? schedules[0] : null;
+    const pool = await this.db.getPool();
+
+    // Get the most recent schedule
+    const scheduleResult = await pool.request().query(`
+      SELECT TOP 1 * FROM WeeklySchedules ORDER BY startDate DESC
+    `);
+
+    if (scheduleResult.recordset.length === 0) return null;
+
+    const schedule = scheduleResult.recordset[0];
+
+    // Get schedule meals with full recipe data (including ingredients)
+    const mealsResult = await pool
+      .request()
+      .input('scheduleId', sql.NVarChar, schedule.id)
+      .query(`
+        SELECT 
+          sm.day,
+          sm.mealType,
+          sm.recipeId
+        FROM ScheduleMeals sm
+        WHERE sm.scheduleId = @scheduleId
+      `);
+
+    const meals: MealSlot[] = [];
+    for (const mealRow of mealsResult.recordset) {
+      const recipe = await this.recipeDAO.getById(mealRow.recipeId);
+      if (recipe) {
+        meals.push({
+          id: uuidv4(),
+          day: mealRow.day,
+          mealType: mealRow.mealType,
+          recipe,
+        });
+      }
+    }
+
+    return {
+      id: schedule.id,
+      name: schedule.name,
+      startDate: schedule.startDate,
+      meals,
+    };
   }
 }
