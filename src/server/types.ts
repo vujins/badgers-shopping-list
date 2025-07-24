@@ -36,7 +36,10 @@ export interface WeeklySchedule {
 }
 
 export interface ShoppingListItem {
+  id: string; // Add unique ID for database persistence
   ingredient: Ingredient;
   totalQuantity: number;
   recipes: string[]; // Recipe names that use this ingredient
+  isChecked: boolean; // Whether the item is checked off
+  scheduleId: string; // Which schedule this item belongs to
 }

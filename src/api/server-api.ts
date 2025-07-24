@@ -1,4 +1,4 @@
-import { Ingredient, Recipe, WeeklySchedule } from '../server/types';
+import { Ingredient, Recipe, WeeklySchedule, ShoppingListItem } from '../server/types';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const API_BASE_URL = isDevelopment ? 'http://localhost:3002/api' : '/api';
@@ -118,6 +118,24 @@ export const scheduleAPI = {
   delete: (id: string): Promise<void> =>
     apiCall(`/schedules/${id}`, {
       method: 'DELETE',
+    }),
+};
+
+// Shopping List API functions
+export const shoppingListAPI = {
+  getByScheduleId: (scheduleId: string): Promise<ShoppingListItem[]> =>
+    apiCall(`/schedules/${scheduleId}/shopping-list`),
+
+  updateCheckedStatus: (itemId: string, isChecked: boolean): Promise<void> =>
+    apiCall(`/shopping-list/${itemId}/checked`, {
+      method: 'PUT',
+      body: JSON.stringify({ isChecked }),
+    }),
+
+  regenerateForSchedule: (scheduleId: string, items: Omit<ShoppingListItem, 'id'>[]): Promise<ShoppingListItem[]> =>
+    apiCall(`/schedules/${scheduleId}/shopping-list/regenerate`, {
+      method: 'POST',
+      body: JSON.stringify({ items }),
     }),
 };
 

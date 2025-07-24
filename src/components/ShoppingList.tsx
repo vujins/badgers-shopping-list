@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from '../hooks';
 
 export function ShoppingList() {
-  const { currentSchedule, generateShoppingList } = useAppStore();
+  const { 
+    currentSchedule, 
+    shoppingList, 
+    loadShoppingList, 
+    toggleShoppingListItem, 
+    regenerateShoppingList,
+    isOnline
+  } = useAppStore();
   const [sharedLink, setSharedLink] = useState('');
 
-  const shoppingList = generateShoppingList();
+  useEffect(() => {
+    if (currentSchedule) {
+      loadShoppingList();
+    }
+  }, [currentSchedule, loadShoppingList]);
+
+  const handleToggleItem = async (itemId: string, isChecked: boolean) => {
+    await toggleShoppingListItem(itemId, isChecked);
+  };
+
+  const handleRegenerateList = async () => {
+    await regenerateShoppingList();
+  };
 
   const handleShare = async () => {
     const shareData = {
@@ -15,6 +34,7 @@ export function ShoppingList() {
         quantity: item.totalQuantity,
         unit: item.ingredient.unit,
         recipes: item.recipes,
+        isChecked: item.isChecked,
       })),
       generatedAt: new Date().toISOString(),
     };
@@ -39,7 +59,8 @@ export function ShoppingList() {
     text += `Generated on: ${new Date(data.generatedAt).toLocaleDateString()}\n\n`;
 
     data.items.forEach((item: any) => {
-      text += `• ${item.quantity} ${item.unit} ${item.name}\n`;
+      const checkmark = item.isChecked ? '✅' : '⬜';
+      text += `${checkmark} ${item.quantity} ${item.unit} ${item.name}\n`;
       if (item.recipes.length > 0) {
         text += `  Used in: ${item.recipes.join(', ')}\n`;
       }
@@ -58,6 +79,7 @@ export function ShoppingList() {
         quantity: item.totalQuantity,
         unit: item.ingredient.unit,
         recipes: item.recipes,
+        isChecked: item.isChecked,
       })),
       generatedAt: new Date().toISOString(),
     };
@@ -90,7 +112,18 @@ export function ShoppingList() {
           <h2 className="text-xl font-bold text-gray-800">Shopping List</h2>
           <p className="text-sm text-gray-600">For: {currentSchedule.name}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          {!isOnline && (
+            <span className="text-sm text-orange-600 bg-orange-100 px-2 py-1 rounded">
+              Offline Mode
+            </span>
+          )}
+          <button
+            onClick={handleRegenerateList}
+            className="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
+            🔄 Regenerate
+          </button>
           <button
             onClick={handleShare}
             disabled={shoppingList.length === 0}
@@ -129,24 +162,37 @@ export function ShoppingList() {
         </p>
       ) : (
         <div className="space-y-3">
-          <div className="text-sm text-gray-600 mb-4">Total items: {shoppingList.length}</div>
+          <div className="text-sm text-gray-600 mb-4">
+            Total items: {shoppingList.length} | 
+            Checked: {shoppingList.filter(item => item.isChecked).length}
+          </div>
 
-          {shoppingList.map((item, index) => (
+          {shoppingList.map((item) => (
             <div
-              key={`${item.ingredient.id}-${index}`}
-              className="flex items-start justify-between p-4 bg-gray-50 rounded-lg"
+              key={item.id}
+              className={`flex items-start gap-3 p-4 rounded-lg transition-all ${
+                item.isChecked 
+                  ? 'bg-gray-100 opacity-75' 
+                  : 'bg-gray-50'
+              }`}
             >
+              <input
+                type="checkbox"
+                checked={item.isChecked}
+                onChange={(e) => handleToggleItem(item.id, e.target.checked)}
+                className="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+              />
               <div className="flex-1">
-                <div className="font-medium text-gray-800">
-                  {item.totalQuantity} {item.ingredient.unit} {item.ingredient.name}
+                <div className={`flex items-baseline gap-2 ${item.isChecked ? 'line-through text-gray-500' : 'text-gray-800'}`}>
+                  <span className="font-medium">
+                    {item.totalQuantity} {item.ingredient.unit} {item.ingredient.name}
+                  </span>
                 </div>
                 {item.recipes.length > 0 && (
-                  <div className="text-sm text-gray-600 mt-1">Used in: {item.recipes.join(', ')}</div>
+                  <div className="text-sm text-gray-600 mt-1">
+                    Used in: {item.recipes.join(', ')}
+                  </div>
                 )}
-              </div>
-
-              <div className="text-right text-sm text-gray-500">
-                {item.recipes.length} recipe{item.recipes.length !== 1 ? 's' : ''}
               </div>
             </div>
           ))}

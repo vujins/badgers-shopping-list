@@ -4,6 +4,7 @@ import DatabaseService from '../config/database.js';
 import { IngredientDAO } from '../dao/IngredientDAO.js';
 import { RecipeDAO } from '../dao/RecipeDAO.js';
 import { WeeklyScheduleDAO } from '../dao/WeeklyScheduleDAO.js';
+import { ShoppingListDAO } from '../dao/ShoppingListDAO.js';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const router: Router = express.Router();
 const ingredientDAO = new IngredientDAO();
 const recipeDAO = new RecipeDAO();
 const scheduleDAO = new WeeklyScheduleDAO();
+const shoppingListDAO = new ShoppingListDAO();
 
 // Initialize database connection and tables
 const initializeDatabase = async () => {
@@ -244,6 +246,51 @@ router.delete('/schedules/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting schedule:', error);
     res.status(500).json({ error: 'Failed to delete schedule' });
+  }
+});
+
+// Shopping List Routes
+router.get('/schedules/:id/shopping-list', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const items = await shoppingListDAO.getByScheduleId(id);
+    res.json(items);
+  } catch (error) {
+    console.error('Error fetching shopping list:', error);
+    res.status(500).json({ error: 'Failed to fetch shopping list' });
+  }
+});
+
+router.put('/shopping-list/:id/checked', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isChecked } = req.body;
+    if (typeof isChecked !== 'boolean') {
+      return res.status(400).json({ error: 'isChecked must be a boolean' });
+    }
+    const updated = await shoppingListDAO.updateCheckedStatus(id, isChecked);
+    if (!updated) {
+      return res.status(404).json({ error: 'Shopping list item not found' });
+    }
+    res.status(204).send();
+  } catch (error) {
+    console.error('Error updating shopping list item:', error);
+    res.status(500).json({ error: 'Failed to update shopping list item' });
+  }
+});
+
+router.post('/schedules/:id/shopping-list/regenerate', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { items } = req.body;
+    if (!Array.isArray(items)) {
+      return res.status(400).json({ error: 'items must be an array' });
+    }
+    const savedItems = await shoppingListDAO.regenerateForSchedule(id, items);
+    res.json(savedItems);
+  } catch (error) {
+    console.error('Error regenerating shopping list:', error);
+    res.status(500).json({ error: 'Failed to regenerate shopping list' });
   }
 });
 

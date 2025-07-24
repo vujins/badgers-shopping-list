@@ -169,6 +169,24 @@ class DatabaseService {
         )
       `);
 
+      // Create ShoppingListItems table
+      await pool.request().query(`
+        IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='ShoppingListItems' AND xtype='U')
+        CREATE TABLE ShoppingListItems (
+          id NVARCHAR(50) PRIMARY KEY,
+          scheduleId NVARCHAR(50) NOT NULL,
+          ingredientId NVARCHAR(50) NOT NULL,
+          totalQuantity DECIMAL(10,2) NOT NULL,
+          recipes NVARCHAR(MAX) NOT NULL, -- JSON array of recipe names
+          isChecked BIT DEFAULT 0,
+          createdAt DATETIME2 DEFAULT GETDATE(),
+          updatedAt DATETIME2 DEFAULT GETDATE(),
+          FOREIGN KEY (scheduleId) REFERENCES WeeklySchedules(id) ON DELETE CASCADE,
+          FOREIGN KEY (ingredientId) REFERENCES Ingredients(id) ON DELETE CASCADE,
+          UNIQUE(scheduleId, ingredientId) -- One entry per ingredient per schedule
+        )
+      `);
+
       console.log('Database tables initialized successfully');
     } catch (error) {
       console.error('Failed to initialize database tables:', error);

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ingredientAPI, recipeAPI, scheduleAPI } from '../api/server-api';
+import { ingredientAPI, recipeAPI, scheduleAPI, shoppingListAPI } from '../api/server-api';
 import { Ingredient, MealSlot, Recipe, ShoppingListItem, WeeklySchedule } from '../server/types';
 
 interface AppStore {
@@ -32,7 +32,11 @@ interface AppStore {
   removeMealFromSlot: (dayIndex: number, mealType: string) => Promise<void>;
 
   // Shopping List
+  shoppingList: ShoppingListItem[];
+  loadShoppingList: () => Promise<void>;
   generateShoppingList: () => ShoppingListItem[];
+  toggleShoppingListItem: (itemId: string, isChecked: boolean) => Promise<void>;
+  regenerateShoppingList: () => Promise<void>;
 
   // Utility functions
   setError: (error: string | null) => void;
@@ -69,6 +73,7 @@ export const useAppStore = create<AppStore>()(
       ingredients: [],
       recipes: [],
       currentSchedule: null,
+      shoppingList: [],
 
       setError: (error: string | null) => set({ error }),
       clearError: () => set({ error: null }),
@@ -327,6 +332,7 @@ export const useAppStore = create<AppStore>()(
           if (!currentSchedule) return;
 
           const day = daysOfWeek[dayIndex];
+          const typedMealType = mealType as 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack 1' | 'Snack 2';
 
           if (isOnline) {
             // Update on server
@@ -334,12 +340,29 @@ export const useAppStore = create<AppStore>()(
           }
 
           // Update locally (optimistic update)
-          const updatedMeals = currentSchedule.meals.map(meal => {
-            if (meal.day === day && meal.mealType === mealType) {
-              return { ...meal, recipe };
-            }
-            return meal;
-          });
+          const existingMealIndex = currentSchedule.meals.findIndex(
+            meal => meal.day === day && meal.mealType === mealType
+          );
+
+          let updatedMeals;
+          if (existingMealIndex >= 0) {
+            // Update existing meal
+            updatedMeals = currentSchedule.meals.map((meal, index) => {
+              if (index === existingMealIndex) {
+                return { ...meal, recipe };
+              }
+              return meal;
+            });
+          } else {
+            // Add new meal
+            const newMeal = {
+              id: `temp_${Date.now()}`, // Temporary ID for optimistic update
+              day,
+              mealType: typedMealType,
+              recipe,
+            };
+            updatedMeals = [...currentSchedule.meals, newMeal];
+          }
 
           set({
             currentSchedule: {
@@ -422,7 +445,95 @@ export const useAppStore = create<AppStore>()(
           }
         });
 
-        return Array.from(ingredientMap.values());
+        return Array.from(ingredientMap.values()).map(item => ({
+          id: uuidv4(), // Temporary ID for generated items
+          scheduleId: state.currentSchedule!.id,
+          ingredient: item.ingredient,
+          totalQuantity: item.totalQuantity,
+          recipes: item.recipes,
+          isChecked: false,
+        }));
+      },
+
+      loadShoppingList: async () => {
+        try {
+          set({ error: null });
+          const { isOnline, currentSchedule } = get();
+          if (!isOnline || !currentSchedule) {
+            // Use generated shopping list if offline or no schedule
+            const generatedList = get().generateShoppingList();
+            set({ shoppingList: generatedList });
+            return;
+          }
+
+          const shoppingList = await shoppingListAPI.getByScheduleId(currentSchedule.id);
+          set({ shoppingList });
+        } catch (error) {
+          console.error('Failed to load shopping list:', error);
+          set({ error: 'Failed to load shopping list' });
+          // Fallback to generated list
+          const generatedList = get().generateShoppingList();
+          set({ shoppingList: generatedList });
+        }
+      },
+
+      toggleShoppingListItem: async (itemId: string, isChecked: boolean) => {
+        try {
+          set({ error: null });
+          const { isOnline, shoppingList } = get();
+
+          if (isOnline) {
+            await shoppingListAPI.updateCheckedStatus(itemId, isChecked);
+          }
+
+          // Update local state
+          const updatedList = shoppingList.map(item =>
+            item.id === itemId ? { ...item, isChecked } : item
+          );
+
+          // Sort: unchecked items first, then checked items
+          const sortedList = updatedList.sort((a, b) => {
+            if (a.isChecked === b.isChecked) {
+              return a.ingredient.name.localeCompare(b.ingredient.name);
+            }
+            return a.isChecked ? 1 : -1;
+          });
+
+          set({ shoppingList: sortedList });
+        } catch (error) {
+          console.error('Failed to toggle shopping list item:', error);
+          set({ error: 'Failed to update shopping list item' });
+        }
+      },
+
+      regenerateShoppingList: async () => {
+        try {
+          set({ error: null });
+          const { isOnline, currentSchedule } = get();
+          if (!currentSchedule) return;
+
+          const generatedItems = get().generateShoppingList();
+          const itemsToSave = generatedItems.map(item => ({
+            scheduleId: item.scheduleId,
+            ingredient: item.ingredient,
+            totalQuantity: item.totalQuantity,
+            recipes: item.recipes,
+            isChecked: false,
+          }));
+
+          if (isOnline) {
+            const savedItems = await shoppingListAPI.regenerateForSchedule(
+              currentSchedule.id,
+              itemsToSave
+            );
+            set({ shoppingList: savedItems });
+          } else {
+            set({ shoppingList: generatedItems });
+          }
+        } catch (error) {
+          console.error('Failed to regenerate shopping list:', error);
+          set({ error: 'Failed to regenerate shopping list' });
+        }
       },
     }),
     {
